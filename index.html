@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+  <h1>Jogo do Galo</h1>
+  <div class="container">
+    <h2></h2>
+    <h3></h3>
+    <div class="regras">
+      <div class="header">
+        <p><b>Bem-vindo ao Jogo do Galo!</b><br> Os jogadores devem jogam alternadamente, desenhando um símbolo de cada vez, num espaço que esteja vazio. <br> 
+            O objetivo do jogo é conseguir colocar o <span style="color: rgb(0, 120, 180); font-weight: bold">'O'</span> ou <span style="color: rgb(0, 120, 180); font-weight: bold">'X'</span> em linha, quer horizontal, vertical ou diagonal,<br> e ao mesmo tempo, quando possível, impedir o adversário de ganhar jogada.</p>
+        <h2>Por favor, selecione os jogadores e o tipo de jogo.</h2>
+      </div>
+      <div class="new-players">
+        <label for="name1">Digite o nome do Jogador 1 [X]</label>
+        <input type="text" name="jogador1"/>
+        <label for="name2">Digite o nome do Jogador 2 [O]</label>
+        <input type="text" name="jogador2"/>
+        <div class="chooseGame">
+          <button id="game3x3" type="button" onclick="addNewPlayers(), iniciar3x3()">Jogar 3x3!</button>
+          <button id="game4x4" type="button" onclick="addNewPlayers(), iniciar4x4()">Jogar 4x4!</button>
+        </div>
+      </div>
+    </div>
+    <div class="board"></div>
+    <div class="resultado"></div>
+  </div>
+<script src="index.js"></script>
+</body>
+</html>

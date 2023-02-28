@@ -1,0 +1,300 @@
+
+body {
+  padding: 30px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+  margin: 0px;
+}
+
+.header p {
+  width: 60%;
+  padding: 20px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  border: 8px solid #00c073;
+  font-size: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 70px;
+}
+
+h1 {
+  text-align: center;
+  color: rgb(90, 183, 152);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 100px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 40px;
+}
+
+.new-players {
+  width: 40%;
+  padding: 12px 20px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  text-align: left;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+  
+.new-players:focus {
+  border: 3px solid #555;
+}
+
+.chooseGame {
+  text-align: center;
+}
+
+.chooseGame button {
+  background-color: #01b570;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 40px;
+  margin: 4px auto;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.chooseGame button:hover {
+  background-color: #0097af;
+  color: rgb(0, 0, 0);
+}
+
+.new-players input[type=text] {
+  font-size: 30px;
+}
+
+.new-players input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+h3 {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 40px;
+}
+
+h4 {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 80px;
+  background-color: aquamarine;
+  width: 500px;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.restartbtn {
+  background-color: #000000;
+  color: white;
+  font-style: italic;
+  padding: 20px;
+  font-size: 30px;
+  margin: auto;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.board {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+td {
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+
+#l1c1-3x3 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l1c2-3x3 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l1c3-3x3 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+}
+
+#l2c1-3x3 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l2c2-3x3 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l2c3-3x3 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+}
+
+#l3c1-3x3 {
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l3c2-3x3 {
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l1c1-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l1c2-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l1c3-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l1c4-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+}
+
+#l2c1-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l2c2-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l2c3-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l2c4-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+}
+
+#l3c1-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l3c2-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l3c3-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l3c4-4x4 {
+  border-bottom: 5px solid rgb(0, 0, 0);
+}
+
+#l4c1-4x4 {
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l4c2-4x4 {
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+#l4c3-4x4 {
+  border-right: 5px solid rgb(0, 0, 0);
+}
+
+.board button:hover {
+  background-color: aquamarine;
+}
+
+.board button {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  font-size: 100px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border: none;
+}
+
+.resultado {
+  width: 40%;
+  padding: 20px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  border: 80px solid #94bf43;
+  font-size: 100px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 100px;
+}
+
+/*
+.tie {
+  width: 40%;
+  padding: 20px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  border: 80px solid #960371;
+  font-size: 100px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 100px;
+}
+*/
+
+.chooseAfterGame button {
+  background-color: #01b570;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 40px;
+  margin: 4px auto;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.chooseAfterGame button:hover {
+  background-color: #0097af;
+  color: rgb(0, 0, 0);
+}
