@@ -2,7 +2,7 @@ const player1 = new Player("","X");
 const player2 = new Player("","O");
 let actualplayer = player1;
 let turno= 1;
-const tabuleiro = new Tabuleiro ();
+const tabuleiro;
 
 class Player {
   constructor (name,symbol) {
@@ -55,93 +55,82 @@ function winnermoves(tipotab){
     total.push(linha);
     linha = [];
   }
-  for (let j = 0; j < tipotab; j++) { 
-    linha.push(j*tipotab+1);
+  for (let i = 0; i < tipotab; i++) { 
+    linha.push(i*(tipotab+1));
   }
   total.push(linha);
   linha = [];
-  for (let j = 2; j < 8; j+=2) { 
-    linha.push(j);
+  for (let j = tipotab-1; j < (tipotab*tipotab)-1; j+=tipotab-1) { 
+    console.log(j);
   }
   total.push(linha);
   linha = [];
   return total;
 }
 
-/*Quando o tipotab altera, estes dois últimos fors da diagonal não funcionam!)*/
-
 function iniciar3x3() {
-  tabuleiro = 3;
+  tabuleiro= new Tabuleiro(3);
   let html="";
   html+=`
     <table>
       <tr>
-        <td id="l1c1-3x3"><button onclick="play3x3(this, 0)"></button></td> 
-        <td id="l1c2-3x3"><button onclick="play3x3(this, 1)"></button></td>
-        <td id="l1c3-3x3"><button onclick="play3x3(this, 2)"></button></td>
+        <td id="l1c1-3x3"><button onclick="play(this, 0)"></button></td> 
+        <td id="l1c2-3x3"><button onclick="play(this, 1)"></button></td>
+        <td id="l1c3-3x3"><button onclick="play(this, 2)"></button></td>
       </tr>
       <tr>
-        <td id="l2c1-3x3"><button onclick="play3x3(this, 3)"></button></td>
-        <td id="l2c2-3x3"><button onclick="play3x3(this, 4)"></button></td> 
-        <td id="l2c3-3x3"><button onclick="play3x3(this, 5)"></button></td>
+        <td id="l2c1-3x3"><button onclick="play(this, 3)"></button></td>
+        <td id="l2c2-3x3"><button onclick="play(this, 4)"></button></td> 
+        <td id="l2c3-3x3"><button onclick="play(this, 5)"></button></td>
       </tr>
       <tr>
-        <td id="l3c1-3x3"><button onclick="play3x3(this, 6)"></button></td>
-        <td id="l3c2-3x3"><button onclick="play3x3(this, 7)"></button></td>
-        <td id="l3c3-3x3"><button onclick="play3x3(this, 8)"></button></td>
+        <td id="l3c1-3x3"><button onclick="play(this, 6)"></button></td>
+        <td id="l3c2-3x3"><button onclick="play(this, 7)"></button></td>
+        <td id="l3c3-3x3"><button onclick="play(this, 8)"></button></td>
       </tr>
     </table>`;
   document.querySelector(".board").innerHTML=html;
 }
 
 function iniciar4x4() {
-  tabuleiro = 4;
+  tabuleiro= new Tabuleiro(3);
   let html="";
   html+=` 
     <table>
       <tr>
-        <td id="l1c1-4x4"><button onclick="play4x4(this, 0)"></button></td> 
-        <td id="l1c2-4x4"><button onclick="play4x4(this, 1)"></button></td>
-        <td id="l1c3-4x4"><button onclick="play4x4(this, 2)"></button></td>
-        <td id="l1c4-4x4"><button onclick="play4x4(this, 3)"></button></td>
+        <td id="l1c1-4x4"><button onclick="play(this, 0)"></button></td> 
+        <td id="l1c2-4x4"><button onclick="play(this, 1)"></button></td>
+        <td id="l1c3-4x4"><button onclick="play(this, 2)"></button></td>
+        <td id="l1c4-4x4"><button onclick="play(this, 3)"></button></td>
       </tr>
       <tr>
-        <td id="l2c1-4x4"><button onclick="play4x4(this, 4)"></button></td>
-        <td id="l2c2-4x4"><button onclick="play4x4(this, 5)"></button></td> 
-        <td id="l2c3-4x4"><button onclick="play4x4(this, 6)"></button></td>
-        <td id="l2c4-4x4"><button onclick="play4x4(this, 7)"></button></td>
+        <td id="l2c1-4x4"><button onclick="play(this, 4)"></button></td>
+        <td id="l2c2-4x4"><button onclick="play(this, 5)"></button></td> 
+        <td id="l2c3-4x4"><button onclick="play(this, 6)"></button></td>
+        <td id="l2c4-4x4"><button onclick="play(this, 7)"></button></td>
       </tr>
       <tr>
-        <td id="l3c1-4x4"><button onclick="play4x4(this, 8)"></button></td>
-        <td id="l3c2-4x4"><button onclick="play4x4(this, 9)"></button></td>
-        <td id="l3c3-4x4"><button onclick="play4x4(this, 10)"></button></td>
-        <td id="l3c4-4x4"><button onclick="play4x4(this, 11)"></button></td>
+        <td id="l3c1-4x4"><button onclick="play(this, 8)"></button></td>
+        <td id="l3c2-4x4"><button onclick="play(this, 9)"></button></td>
+        <td id="l3c3-4x4"><button onclick="play(this, 10)"></button></td>
+        <td id="l3c4-4x4"><button onclick="play(this, 11)"></button></td>
       </tr>
       <tr>
-      <td id="l4c1-4x4"><button onclick="play4x4(this, 12)"></button></td>
-      <td id="l4c2-4x4"><button onclick="play4x4(this, 13)"></button></td>
-      <td id="l4c3-4x4"><button onclick="play4x4(this, 14)"></button></td>
-      <td id="l4c4-4x4"><button onclick="play4x4(this, 15)"></button></td>
+      <td id="l4c1-4x4"><button onclick="play(this, 12)"></button></td>
+      <td id="l4c2-4x4"><button onclick="play(this, 13)"></button></td>
+      <td id="l4c3-4x4"><button onclick="play(this, 14)"></button></td>
+      <td id="l4c4-4x4"><button onclick="play(this, 15)"></button></td>
     </tr>
     </table>`;
   document.querySelector(".board").innerHTML=html;
 }
 
-function play3x3 (element, position) {
+function play (element, position) {
   if (element.innerText === ""){
     element.innerText = actualplayer.symbol;
-    jogo3x3 [position] = actualplayer.symbol;
+    tabuleiro.jogadas[position]= actualplayer.symbol;
     switchPlayer();
-  }
-  document.querySelector ("h2").innerHTML = "É a vez do player " + actualplayer.name;
-  document.querySelector ("h3").innerHTML = "Turno " + turno;
-}
-
-function play4x4 (element, position) {
-  if (element.innerText === ""){
-    element.innerText = actualplayer.symbol;
-    jogo4x4 [position] = actualplayer.symbol;
-    switchPlayer();
+    /*função winGame*/
   }
   document.querySelector ("h2").innerHTML = "É a vez do player " + actualplayer.name;
   document.querySelector ("h3").innerHTML = "Turno " + turno;
@@ -167,8 +156,14 @@ function winGame () {
   }
 }
 
-/*Tenho de conseguir colocar na função winGame o tipotab e fazer com que o if contemple o tipo tab... como fazer isso?
+/* TPC: Fazer função winGame e descobrir como omitir as divs, eventualmente pensar como podemos fazer o tabuleiro de forma dinamica
 
+Tenho de conseguir colocar na função winGame o tipotab e fazer com que o if contemple o tipo tab... como fazer isso?
+
+- Ter uma função que faça reset ao jogo -> Lembrar que a variável jogo3x3 ou jogo 4x4 não deu reset, mesmo que nós tenhamos dado reset ao board! O tabuleiro só tem
+a parte HTML, mas não tem a estrutura JS que nos diz quem ganhou ou não!
+
+- Aprender a omitir coisas (conseguimos omitir as divs no nosso javascript, por isso não precisamos de as eliminar no html como tinha antes -> https://www.w3schools.com/jsref/prop_style_visibility.asp)
 
 function winner3x3 () {
   for (win of winnermoves3x3) {
@@ -238,14 +233,4 @@ function tie4x4() {
 }
 
 /*
-
-- Ter uma função que faça reset ao jogo -> Lembrar que a variável jogo3x3 ou jogo 4x4 não deu reset, mesmo que nós tenhamos dado reset ao board! O tabuleiro só tem
-a parte HTML, mas não tem a estrutura JS que nos diz quem ganhou ou não!
-
-- As funções estão duplicadas e temos de pensar como com apenas uma função conseguiriamos fazer o board, o winner e etc.... (a função tem de receber a variável
-  que queremos, tabuleiro 3x3, 4x4, etc etc...)
-
-- Aprender a omitir coisas (conseguimos omitir as divs no nosso javascript, por isso não precisamos de as eliminar no html como tinha antes -> https://www.w3schools.com/jsref/prop_style_visibility.asp)
-
-
 
