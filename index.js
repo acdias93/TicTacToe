@@ -1,59 +1,77 @@
-const player = ['X', 'O'];
-let currentPlayer = player [0];
-let turno="";
-let contagemturno= 1;
-let player1 = "";
-let player2 = "";
+const player1 = new Player("","X");
+const player2 = new Player("","O");
+let actualplayer = player1;
+let turno= 1;
+const tabuleiro = new Tabuleiro ();
 
-const jogo3x3=['', '', '', '', '', '', '', '', ''];
-let winnermoves3x3=[
-  [0,1,2],
-  [3,4,5],
-  [6,7,8],
-  [0,3,6],
-  [1,4,7],
-  [2,5,8],
-  [0,4,8],
-  [2,4,6]
-];
-
-/* Tenho de meter estas variáveis com for!!!!*/
-
-const jogo4x4=['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
-let winnermoves4x4=[
-  [0, 1, 2, 3],
-  [4, 5, 6, 7],
-  [8, 9, 10, 11],
-  [12, 13, 14, 15],
-  [0, 4, 8, 12],
-  [1, 5, 9, 13],
-  [2, 6, 10, 14],
-  [3, 7, 11, 15],
-  [0, 5, 10, 15],
-  [3, 6, 9, 12],
-];
-
-function addNewPlayers() {
-  player1 = document.querySelector('input[name="jogador1"]').value;
-  player2 = document.querySelector('input[name="jogador2"]').value;
-  turno = player1 + " [X]";
-  document.querySelector ("h2").innerHTML = "É a vez do player " +turno;
-  document.querySelector ("h3").innerHTML = "Turno " + contagemturno;
-}
-
-function SwitchPlayer () {
-  if (currentPlayer === player[0]){
-    turno = player2 + " [O]";
-    contagemturno += 1;
-    currentPlayer= player[1];
-  } else {
-    turno = player1 + " [X]";
-    contagemturno += 1;
-    currentPlayer = player[0];
+class Player {
+  constructor (name,symbol) {
+      this.name = name;
+      this.symbol = symbol;
   }
 }
 
+function addNewPlayers() {
+  player1.name = document.querySelector('input[name="player1"]').value;
+  player2.name = document.querySelector('input[name="player2"]').value;
+  document.querySelector("h2").innerHTML= "É a vez do player "+actualplayer.name;
+  document.querySelector("h3").innerHTML= "Turno "+turno;
+}
+
+function switchPlayer () {
+  if (actualplayer == player1){
+    actualplayer = player2;
+  } else {
+    actualplayer = player1;
+  }
+  turno += 1;
+}
+
+class Tabuleiro {
+  constructor (tipotab) {
+      this.tipotab = tipotab;
+      this.jogadas = new Array(tipotab*tipotab);
+      this.winner = winnermoves(tipotab);
+  }
+}
+
+function winnermoves(tipotab){
+  let linha = [];
+  let total = [];
+  let diferenca;
+
+  for (let i = 0; i < tipotab; i++){
+    diferenca = i * tipotab;
+    for (let j = diferenca; j < diferenca + tipotab; j++) {
+      linha.push(j);
+    }
+    total.push(linha);
+    linha = [];
+  }
+  for (let i = 0; i < tipotab; i++) {
+    for (let j = 0; j < tipotab; j++) { 
+      linha.push(j*tipotab+i);
+    }
+    total.push(linha);
+    linha = [];
+  }
+  for (let j = 0; j < tipotab; j++) { 
+    linha.push(j*tipotab+1);
+  }
+  total.push(linha);
+  linha = [];
+  for (let j = 2; j < 8; j+=2) { 
+    linha.push(j);
+  }
+  total.push(linha);
+  linha = [];
+  return total;
+}
+
+/*Quando o tipotab altera, estes dois últimos fors da diagonal não funcionam!)*/
+
 function iniciar3x3() {
+  tabuleiro = 3;
   let html="";
   html+=`
     <table>
@@ -77,7 +95,7 @@ function iniciar3x3() {
 }
 
 function iniciar4x4() {
-  modoJogo=4;
+  tabuleiro = 4;
   let html="";
   html+=` 
     <table>
@@ -111,25 +129,46 @@ function iniciar4x4() {
 
 function play3x3 (element, position) {
   if (element.innerText === ""){
-    element.innerText = currentPlayer;
-    jogo3x3 [position] = currentPlayer;
-    winner3x3();
-    SwitchPlayer();
+    element.innerText = actualplayer.symbol;
+    jogo3x3 [position] = actualplayer.symbol;
+    switchPlayer();
   }
-  document.querySelector ("h2").innerHTML = "É a vez do player " + turno;
-  document.querySelector ("h3").innerHTML = "Turno " + contagemturno;
+  document.querySelector ("h2").innerHTML = "É a vez do player " + actualplayer.name;
+  document.querySelector ("h3").innerHTML = "Turno " + turno;
 }
 
 function play4x4 (element, position) {
   if (element.innerText === ""){
-    element.innerText = currentPlayer;
-    jogo4x4 [position] = currentPlayer;
-    winner4x4 ();
-    SwitchPlayer ();
+    element.innerText = actualplayer.symbol;
+    jogo4x4 [position] = actualplayer.symbol;
+    switchPlayer();
   }
-  document.querySelector ("h2").innerHTML = "É a vez do player " + turno;
-  document.querySelector ("h3").innerHTML = "Turno " + contagemturno;
+  document.querySelector ("h2").innerHTML = "É a vez do player " + actualplayer.name;
+  document.querySelector ("h3").innerHTML = "Turno " + turno;
 }
+
+function winGame () {
+  for (win of tabuleiro.winner) {
+    if (tabuleiro.jogadas [win[0]] === currentPlayer && jogo3x3 [win[1]] === currentPlayer && jogo3x3 [win[2]] === currentPlayer){
+      turno= 0;
+      let html="";
+      html+=` 
+        <p>Ganhou o jogador <b>${turno}</b></p>
+        <div class="chooseAfterGame">
+          <button id="playAgain" type="button" onclick="iniciar3x3()">Play again</button>
+          <button id="restart" type="button" onclick=window.location.reload()>Restart</button>
+        </div>`;
+      document.querySelector(".resultado").innerHTML=html;
+      return
+    }
+    else {
+      tie();
+    }
+  }
+}
+
+/*Tenho de conseguir colocar na função winGame o tipotab e fazer com que o if contemple o tipo tab... como fazer isso?
+
 
 function winner3x3 () {
   for (win of winnermoves3x3) {
@@ -210,16 +249,3 @@ a parte HTML, mas não tem a estrutura JS que nos diz quem ganhou ou não!
 
 
 
-let modoJogo=3;
-
-- 3 -> as primeiras 3 sao incrementadas um a um (horizontais)
-    -> as segundas 3 são incrementadas 3 a 3	(verticais)
-    -> a incrementada 3+1
-    -> a incrementada 3-1
-
-- 4 -> as primeiras 4 sao incrementadas um a um (horizontais)
-    -> as segundas 4 são incrementadas 4 a 4	(verticais)
-    -> a incrementada 4+1
-    -> a incrementada 4-1
-
-*/
