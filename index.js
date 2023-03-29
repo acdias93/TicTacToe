@@ -2,7 +2,7 @@ const player1 = new Player("","X");
 const player2 = new Player("","O");
 let actualplayer = player1;
 let turno= 1;
-const tabuleiro;
+const tabuleiro= null;
 
 class Player {
   constructor (name,symbol) {
@@ -231,6 +231,4 @@ function tie4x4() {
     document.querySelector(".resultado").innerHTML=html;
   }
 }
-
-/*
-
+*/
