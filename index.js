@@ -1,15 +1,24 @@
-const player1 = new Player("","X");
-const player2 = new Player("","O");
-let actualplayer = player1;
-let turno= 1;
-const tabuleiro= null;
-
 class Player {
   constructor (name,symbol) {
       this.name = name;
       this.symbol = symbol;
   }
 }
+
+class Tabuleiro {
+  constructor (tipotab) {
+      this.tipotab = tipotab;
+      this.jogadas = new Array(tipotab*tipotab);
+      this.winner = winnermoves(tipotab);
+  }
+}
+
+const player1 = new Player("","X");
+const player2 = new Player("","O");
+let actualplayer = player1;
+let turno= 1;
+let tabuleiro= null;
+let poswin = [];
 
 function addNewPlayers() {
   player1.name = document.querySelector('input[name="player1"]').value;
@@ -27,17 +36,8 @@ function switchPlayer () {
   turno += 1;
 }
 
-class Tabuleiro {
-  constructor (tipotab) {
-      this.tipotab = tipotab;
-      this.jogadas = new Array(tipotab*tipotab);
-      this.winner = winnermoves(tipotab);
-  }
-}
-
 function winnermoves(tipotab){
   let linha = [];
-  let total = [];
   let diferenca;
 
   for (let i = 0; i < tipotab; i++){
@@ -45,31 +45,33 @@ function winnermoves(tipotab){
     for (let j = diferenca; j < diferenca + tipotab; j++) {
       linha.push(j);
     }
-    total.push(linha);
+    poswin.push(linha);
     linha = [];
   }
   for (let i = 0; i < tipotab; i++) {
     for (let j = 0; j < tipotab; j++) { 
       linha.push(j*tipotab+i);
     }
-    total.push(linha);
+    poswin.push(linha);
     linha = [];
   }
   for (let i = 0; i < tipotab; i++) { 
     linha.push(i*(tipotab+1));
   }
-  total.push(linha);
+  poswin.push(linha);
   linha = [];
   for (let j = tipotab-1; j < (tipotab*tipotab)-1; j+=tipotab-1) { 
-    console.log(j);
+    linha.push(j);
   }
-  total.push(linha);
+  poswin.push(linha);
   linha = [];
-  return total;
+  return poswin;
 }
 
 function iniciar3x3() {
   tabuleiro= new Tabuleiro(3);
+  winnermoves ();
+  /*parece que ao colocar o winnermoves aqui a função não ficou bem*/
   let html="";
   html+=`
     <table>
@@ -93,7 +95,8 @@ function iniciar3x3() {
 }
 
 function iniciar4x4() {
-  tabuleiro= new Tabuleiro(3);
+  tabuleiro= new Tabuleiro(4);
+  winnermoves ();
   let html="";
   html+=` 
     <table>
@@ -130,15 +133,61 @@ function play (element, position) {
     element.innerText = actualplayer.symbol;
     tabuleiro.jogadas[position]= actualplayer.symbol;
     switchPlayer();
-    /*função winGame*/
+    winGame ();
   }
   document.querySelector ("h2").innerHTML = "É a vez do player " + actualplayer.name;
   document.querySelector ("h3").innerHTML = "Turno " + turno;
 }
 
 function winGame () {
-  for (win of tabuleiro.winner) {
-    if (tabuleiro.jogadas [win[0]] === currentPlayer && jogo3x3 [win[1]] === currentPlayer && jogo3x3 [win[2]] === currentPlayer){
+  let w=0;
+  for (win of poswin) {
+    for (i=0; i<win.length; i++) {
+      if (tabuleiro.jogadas [win[i]] === actualplayer.symbol){
+        w++;
+      }
+      else {
+        w=0;
+      }
+    }
+    if (w===win.length) {
+      console.log ("WIN")
+    }
+  }
+}
+
+/*Isto não está a funcionar*/
+
+
+
+  /*
+JS FIDDLE WIN:
+
+let a= [[0,1,2], [3,4,5], [6,7,8]];
+let jogadas= ["O", "X", "X", "", "O", "", "X", "X", "X"];
+let actualplayer = "X";
+let w= 0;
+
+for (let win of a) {
+	for (i=0; i<win.length; i++){
+  	if (jogadas[win[i]] == actualplayer) {
+    	w++;
+    }
+    else {
+    	w=0;
+    }
+   	console.log (w);
+  }
+  if (w==win.length) {
+  	console.log ("WIN")
+  }
+  else {
+  	console.log ("TRY AGAIN")
+  }
+}
+
+
+    if (w==win.length) {
       turno= 0;
       let html="";
       html+=` 
@@ -148,13 +197,12 @@ function winGame () {
           <button id="restart" type="button" onclick=window.location.reload()>Restart</button>
         </div>`;
       document.querySelector(".resultado").innerHTML=html;
+      w=0;
       return
-    }
-    else {
-      tie();
     }
   }
 }
+
 
 /* TPC: Fazer função winGame e descobrir como omitir as divs, eventualmente pensar como podemos fazer o tabuleiro de forma dinamica
 
