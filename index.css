@@ -260,10 +260,21 @@ td {
   margin: auto;
   margin-bottom: 20px;
   margin-top: 40px;
-  border: 80px solid #94bf43;
-  font-size: 100px;
+  border: 40px solid #94bf43;
+  font-size: 60px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 100px;
+}
+
+.totalres {
+  width: 20%;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  border: 5px solid #000000;
+  font-size: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 20px;
 }
 
 /*
