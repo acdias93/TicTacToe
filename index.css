@@ -254,6 +254,12 @@ td {
   border: none;
 }
 
+.totalres h1 {
+  color: rgb(0 108 128);
+  font-weight: bold;
+  font-size: 30px;
+}
+
 .resultado {
   width: 40%;
   padding: 20px;
@@ -276,20 +282,6 @@ td {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 20px;
 }
-
-/*
-.tie {
-  width: 40%;
-  padding: 20px;
-  margin: auto;
-  margin-bottom: 20px;
-  margin-top: 40px;
-  border: 80px solid #960371;
-  font-size: 100px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  line-height: 100px;
-}
-*/
 
 .chooseAfterGame button {
   background-color: #01b570;

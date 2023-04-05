@@ -36,15 +36,11 @@ function totalResult() {
   document.querySelector(".totalres").style.display = "block";
   let html="";
   html+=` 
-  <p><span style="color: rgb(0, 120, 180); font-weight: bold">Resultados:</span></p>
+  <h1>Resultados:</h1>
   <p>${player1.name} [${player1.symbol}] = ${player1.result}</p>
   <p>${player2.name} [${player2.symbol}] = ${player2.result}</p>
   </div>`;
   document.querySelector(".totalres").innerHTML=html;
-}
-
-function defineTab (tab) {
-  tabuleiro = new Tabuleiro(tab);
 }
 
 function winnermoves(tipotab){
@@ -89,7 +85,8 @@ function switchPlayer () {
   turno += 1;
 }
 
-function iniciar() {
+function iniciar(tab) {
+  tabuleiro = new Tabuleiro(tab);
   document.querySelector(".intro").style.display = "none";
   winnermoves();
   document.querySelector(".board").style.display = "flex";
@@ -167,8 +164,7 @@ function tie() {
 }
 
 function playAgain (){
-  defineTab (tabuleiro.tipotab);
-  iniciar();
+  iniciar(tabuleiro.tipotab);
   document.querySelector(".players").style.display = "block";
   document.querySelector(".resultado").style.display="none";
 }
