@@ -117,8 +117,8 @@ function play (element, position) {
 function winGame () {
   let w=0;
   for (win of tabuleiro.winner) {
-    for (i=0; i<win.length; i++) {
-      if (tabuleiro.jogadas [win[i]] === actualplayer.symbol){
+    for (i=0; i<win.length; i++) { 
+      if (tabuleiro.jogadas [win[i]] === actualplayer.symbol){ 
         w++;
       }
       else {
@@ -138,7 +138,6 @@ function winGame () {
           <button id="restart" type="button" onclick=window.location.reload()>Restart</button>
         </div>`;
       document.querySelector(".resultado").innerHTML=html;
-      w=0;
       actualplayer.result+=1;
       totalResult();
       return
